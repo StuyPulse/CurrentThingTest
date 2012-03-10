@@ -1,0 +1,8 @@
+*.class
+.*.swp
+j2meclasses/
+build/
+suite/
+nbproject/private/private.xml
+joebot.test/nbproject/private/
+VIRSYSJ
