@@ -24,6 +24,9 @@ public class CurrentThing {
         measurements = new Vector();
     }
 
+    /**
+     * Starts the update thread.
+     */
     public void start() {
         stop();
         updateMeasurements = new Timer();
@@ -50,6 +53,10 @@ public class CurrentThing {
         measurements.removeAllElements();
     }
 
+    /**
+     * Returns the current read by the current thing.
+     * @return Current in amps
+     */
     public double getCurrent() {
         if (measurements.isEmpty()) {
             return 0;
@@ -59,7 +66,7 @@ public class CurrentThing {
             for (int i = 0; i < measurements.size(); i++) {
                 sum += ((Double) measurements.elementAt(i)).doubleValue();
             }
-            return sum / measurements.size();
+            return sum / 0.01;
         }
     }
 }

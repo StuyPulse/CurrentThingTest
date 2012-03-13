@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Victor;
  * @author 694
  */
 public class StallDetectingVictor extends Victor {
-    private static double STALL_CURRENT = 0.3;
+    private static double STALL_CURRENT = 30;
     private static double FAULT_TIME = 1;
     
     private CurrentThing currentThing;
