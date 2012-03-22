@@ -19,6 +19,9 @@ public class CurrentThing {
     private Timer updateMeasurements;
     private final int UPDATE_PERIOD_MS = 10;
 
+    private static final double CURRENT_MULTIPLIER = 15.0;
+
+
     public CurrentThing(int channel) {
         analog = new AnalogChannel(channel);
         measurements = new Vector();
@@ -66,7 +69,7 @@ public class CurrentThing {
             for (int i = 0; i < measurements.size(); i++) {
                 sum += ((Double) measurements.elementAt(i)).doubleValue();
             }
-            return sum / 0.01;
+            return sum * CURRENT_MULTIPLIER;
         }
     }
 }
