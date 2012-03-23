@@ -5,6 +5,8 @@
 package edu.stuy;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.networktables.NetworkTableKeyNotDefined;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -19,7 +21,7 @@ public class CurrentThing {
     private Timer updateMeasurements;
     private final int UPDATE_PERIOD_MS = 10;
 
-    private static final double CURRENT_MULTIPLIER = 15.0;
+    private static double currentModifier = 1.0;
 
 
     public CurrentThing(int channel) {
@@ -69,7 +71,13 @@ public class CurrentThing {
             for (int i = 0; i < measurements.size(); i++) {
                 sum += ((Double) measurements.elementAt(i)).doubleValue();
             }
-            return sum * CURRENT_MULTIPLIER;
+            try{
+               currentModifier = SmartDashboard.getDouble("setCurrentMod");
+            }
+            catch (NetworkTableKeyNotDefined e) {
+                SmartDashboard.putDouble("setCurrentMod", 1);
+            }
+            return sum / 0.1 * currentModifier;
         }
     }
 }
